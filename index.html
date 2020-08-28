@@ -3,12 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[練習三]簡易記事本</title>
-
-
-    <!-- Bootstrap 4 CSS 的 CDN -->
+    <title>Easy Note</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
     <style>
         body {
             font-family: Microsoft JhengHei;
@@ -23,11 +19,8 @@
             line-height: 1.42857;
         }
     </style>
-
-
 </head>
 <body>
-    <!-- Vue實例的掛載點 -->
     <div id="app">
         <div class="jumbotron jumbotron-fluid">
             <div class="container text-center">
@@ -80,67 +73,53 @@
                 </div>
             </div>
         </div>
-        
-
-
-
     </div>
-
-    <!-- Vue的CDN -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
-
-    <!-- Bootstrap 4 JavaScript 的 CDN -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <!-- Vue實例的程式碼 -->
     <script>
         new Vue({
-            el:"#app",
+            el:'#app',
             data:{
                 newNote:{
                     name:'',
                     content:''
                 },
-                notes: JSON.stringify(this.notes) || [] //儲存記事物件的陣列
+                notes: JSON.stringify(this.notes) || []
             },
-            watch:{                                    //用 watch 監看 notes資料是否有變動，如有變動便執行 handler函式方法
-                notes:{
-                    handler: 'saveNotes',
-                    deep: true
-                }
+            watch:{
+                handler:'saveNote',
+                deep: true
             },
             methods:{
-                addNote(){                            //1.檢查使用者是否有輸入資料
-                    if(this.newNote.name.trim().length == 0 || this.newNote.content.trim().length == 0 ){
-                        alert('記事的摘要及內容都一定要填哦！')
+                addNote(){
+                    if(this.newNote.name.trim().length === 0 || this.newNote.content.trim().length === 0){
+                        alert('摘要和內容一定要填寫唷！')
                         return
                     }
-                    const note = {                   //2.利用輸入框資料新增 note物件常數
+                    const note = {
                         name: this.newNote.name,
                         content: this.newNote.content,
                         created: new Date()
                     }
-                    this.notes.push(note)            //3.將note物件新增到 notes陣列中
-                    this.newNote.content = ''        //4.清除輸入框
-                    this.newNote.name =''            //4.清除輸入框
+                    this.notes.push(note)
+                    this.newNote.name = ''
+                    this.newNote.content = ''
                 },
                 deleteNote(note){
-                    if(confirm('確定要刪除這則記事嗎？')){
+                    if(confirm('確定要刪除嗎？')){
                         const ndx = this.notes.indexOf(note)
-                        if( ndx !== -1){              //如果note的索引值嚴格不等於 -1
-                            this.notes.splice(ndx, 1) //就執行刪除  拼接語法：splice(索引位置, 刪除幾個元素, 取代的元素內容)
+                        if(ndx !== -1){
+                            this.notes.splice(ndx, 1)
                         }
-                        console.log('已刪除')
                     }
                 },
-                saveNotes(){
-                    localStorage.setItem('notes', JSON.stringify(this.notes)) //儲存在localStorage   setItem(keyname, value)  stringify是JSON的函式，將js值轉換成JSON字串格式
-                    console.log('新記事已儲存', new Date())
+                saveNote(){
+                    localStorage.setItem('notes', JSON.stringify(this.notes))
                 }
             }
         })
-    </script>
+    </script> 
 </body>
 </html>
