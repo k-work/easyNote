@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
+*{
+    // background-color: #E06879;
+    font-family: 'Noto Sans TC', sans-serif;
+    ul li{
+        list-style-type:none;
+    }
+}
+
+@media screen and (max-width:600px){
+    #addText{
+        display: block;
+        width: 100%;
+        // div > div > div{
+        //     width:100%;
+        // }
+    }
+    #content{
+        display:flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .card-header{
+        font-size: 24px 
+    }
+    #section2{
+        h3{
+            margin-top:4px;
+        }
+    }
+}

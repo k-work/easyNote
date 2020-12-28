@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Easy Note</title>
+    <link rel="stylesheet" href="style.scss">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
@@ -25,34 +26,37 @@
         <div class="jumbotron jumbotron-fluid">
             <div class="container text-center">
                 <h1 class="display-4">簡易記事本</h1>
-                <p class="lead">透過左側的新增，右側列清單及刪除功能來管理記事</p>
+                <p class="lead">新增、刪除記事</p>
             </div>
         </div>
-        <div class="container-fluid mt-4">
+        <div class="container-fluid mt-4" id="content">
             <div class="row">
-                <div class="col-4">
-                    <div class="card text-center">
-                        <div class="card-header">
-                        新增記事
-                        </div>
-                        <div class="card-body">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">摘要</span>
-                                </div>
-                                <input type="text" class="form-control" placeholder="請填入記事摘要" v-model="newNote.name">
+                <div id="addText">
+
+                        <div class="card text-center" id="section1">
+                            <div class="card-header">
+                            新增記事
                             </div>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">內容</span>
+                            <div class="card-body">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">摘要</span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="請填入記事摘要" v-model="newNote.name">
                                 </div>
-                                <input type="text" class="form-control" placeholder="請填入記事內容" v-model="newNote.content">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">內容</span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="請填入記事內容" v-model="newNote.content">
+                                </div>
+                            <button class="btn btn-primary" @click="addNote">新增</button>
                             </div>
-                        <button class="btn btn-primary" @click="addNote">新增</button>
                         </div>
-                    </div>
+
                 </div>
-                <div class="col">
+                
+                <div class="col" id="section2">
                     <h3 class="text-center">清單</h3>
                     <table class="table table-striped">
                         <thead>
